@@ -1,0 +1,43 @@
+.ant-spin {
+    font-size: $font-size-base;
+    color: $loading-color;
+}   
+
+.ant-spin-dot {
+    i {
+        background-color: $loading-color;
+    }
+}
+
+.ant-spin-nested-loading {
+
+    >div {
+
+        >.ant-spin {
+
+            .ant-spin-dot {
+                position: absolute;
+                left: 50%;
+                margin: -20px;
+            }
+        }
+    }
+}
+.loadingActivity .ant-spin{
+    height: 60px !important;
+    top: 35% !important;
+}
+
+
+.loadingSpondei .ant-spin-blur{
+    opacity: 1;
+}
+
+.loadingSpondei .ant-spin-spinning{
+    max-height: initial !important;
+}
+.loadingSpondei .anticon{
+    top: 45%;
+    position: absolute;
+    left: 49%;
+}

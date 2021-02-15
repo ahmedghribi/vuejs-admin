@@ -1,0 +1,140 @@
+.ant-checkbox,
+.ant-checkbox-wrapper {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+}
+
+.CheckedTR .ant-checkbox-checked .ant-checkbox-inner{
+    background-color: #fff;
+    border-color: #fff;
+}
+
+.CheckedTR .ant-checkbox-checked .ant-checkbox-inner::after{
+    border-color: #0b83c0;
+}
+
+.CheckedTR:hover .ant-checkbox-checked .ant-checkbox-inner::after{
+    border-color: #0b83c0;
+}
+
+
+.CheckedTR:hover .ant-checkbox-checked .ant-checkbox-inner{
+    background-color: #fff;
+    border-color: #fff;
+}
+
+
+.ActivitieCheck .ant-checkbox-wrapper {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.ant-calendar-time-picker-select ul{
+    overflow: scroll
+}
+
+
+.ant-calendar-time-picker-select:hover{
+    overflow-y: hidden;
+}
+.ActivitieCheck .ant-collapse-arrow{
+    text-align: right;
+    right: 4%;
+}
+.ant-checkbox-wrapper {
+    color: $body-color;
+    /*margin-right: 10px;*/
+}
+
+.checkboxVeh .ant-checkbox{
+    background: #fff;
+    border-radius: 4px;
+}
+
+.ant-checkbox {
+    color: $body-color;
+    line-height: $checkbox-line-height;
+    position: relative;
+    vertical-align: middle;
+    top: $checkbox-top-adjust;
+
+    &:hover {
+        .ant-checkbox-inner {
+            border-color: $checkbox-theme-color;
+        }
+    }
+}
+.validationCard .ant-checkbox-inner {
+    width: 26px;
+    height: 26px;
+}
+.validationCard input[type=checkbox]{
+    width: 26px;
+    height: 26px;
+}
+.validationCard .ant-checkbox-inner:after{
+    left: 8px;
+    top: 11px;
+}
+.ant-checkbox-inner {
+    width: $checkbox-width-height;
+    height: $checkbox-width-height;
+    border: 1px solid #c1c7d0;
+    border-radius: $border-radius;
+    background-color: transparent;
+
+    &:after {
+        left: $checkbox-position-left;
+        top: $checkbox-position-top;
+    }
+}
+
+.ant-checkbox-checked {
+
+    .ant-checkbox-inner {
+        background-color: $checkbox-theme-color;
+        border-color: $checkbox-theme-color;
+    }
+
+    &:after {
+        border: 1px solid $checkbox-theme-color;
+        border-radius: $border-radius;
+    }
+}
+
+.ant-checkbox-input {
+
+    &:focus,
+    &:hover {   
+        + .ant-checkbox-inner {
+            border-color: $checkbox-theme-color;
+        }
+    }
+}
+
+.ant-checkbox-indeterminate {
+    
+    .ant-checkbox-inner {
+
+        &:after {
+            background-color: $checkbox-theme-color;
+        }
+    }
+}
+
+.ant-checkbox-disabled {
+
+    .ant-checkbox-inner {
+        border-color: $border-color !important;
+        background-color: $checkbox-disable-bg;
+    }
+
+    &.ant-checkbox-checked {
+
+        .ant-checkbox-inner {
+
+            &:after {
+                border-color: rgba($body-color, 0.5);
+            }
+        }
+    }
+}
