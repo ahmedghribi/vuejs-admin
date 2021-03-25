@@ -766,8 +766,8 @@ body {
 }
 
 .ph-40 {
-    padding-left: 40px!important;
-    padding-right: 40px!important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
 }
 
 .ant-input-affix-wrapper .ant-input:not(:first-child) {
@@ -775,7 +775,7 @@ body {
 }
 
 .anticon-user>svg {
-    margin-top: 0px !important;
+    margin-top: -27px !important;
     font-size: 14px !important;
     color: #53535f;
 }
@@ -787,19 +787,27 @@ body {
 }
 
 .shadow-lg1 {
-    box-shadow: 0 1rem 3rem rgba(77, 84, 124, .09)!important;
+    box-shadow: 0 1rem 3rem rgba(77, 84, 124, .09) !important;
 }
 
 .text-muted1 {
-    color: rgba(114, 132, 154, .7)!important;
+    color: rgba(114, 132, 154, .7) !important;
 }
 
 a.text-gray:hover,
 a.text-muted1:hover {
     text-decoration: none !important;
-    color: #2a2a2a!important;
+    color: #2a2a2a !important;
 }
 
 .ant-card-bordered {
     border: 1px solid #edf2f9;
+}
+
+.ant-alert-closable .anticon-exclamation-circle>svg {
+    margin-top: -2px !important;
+}
+
+.ant-alert-message {
+    padding-left: 10px;
 }

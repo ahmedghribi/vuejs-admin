@@ -8,7 +8,11 @@
     <a-menu
       theme="light"
       mode="inline"
-      :defaultOpenKeys="[(($route.name == 'Form Category' || $route.name == 'Form Store' )  && 'sub1') || 'none']"
+      :defaultOpenKeys="[
+        (($route.name == 'Form Category' || $route.name == 'Form Store') &&
+          'sub1') ||
+          'none',
+      ]"
       :defaultSelectedKeys="[
         (($route.name == 'Languages' ||
           $route.name == 'Add Language' ||
@@ -16,7 +20,8 @@
           '7') ||
           (($route.name == 'users' || $route.name == 'User') && '9') ||
           ($route.name == 'Form Category' && '5') ||
-          ($route.name == 'Form Store' && '6') || '0' 
+          ($route.name == 'Form Store' && '6') ||
+          '0',
       ]"
       class="ant-menu ant-menu-root ant-menu-inline side-nav-menu"
     >

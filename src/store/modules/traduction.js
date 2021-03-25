@@ -35,11 +35,12 @@ const traduction = {
                     "x-api-key": localStorage.getItem('token')
                 };
                 const item = {
-                    name: values.name,
-                    context: values.context,
-                    note: values.note,
-                }
-                console.log(values);
+                        name: values.name,
+                        context: values.context,
+                        note: values.note,
+                        tooltipLocation: values.tooltipLocation,
+                    }
+                    // console.log(values);
                 axios({
                         url: ApiUrl + 'api/v2/admin/localization/keys',
 
@@ -62,12 +63,20 @@ const traduction = {
                 const headers = {
                     "x-api-key": localStorage.getItem('token')
                 };
-                const item = {
-                    keyId: values.keyId,
-                    languageId: values.languageId,
-                    value: values.value,
+                let tooltipVar;
+                if (values.tooltipEdit) {
+                    tooltipVar = values.tooltipEdit;
+                } else {
+                    if (values.tooltip)
+                        tooltipVar = values.tooltip;
                 }
-                console.log(values);
+                const item = {
+                        keyId: values.keyId,
+                        languageId: values.languageId,
+                        value: values.value,
+                        tooltip: tooltipVar,
+                    }
+                    //console.log(values);
                 axios({
                         url: ApiUrl + 'api/v2/admin/localization/translations',
 
@@ -91,15 +100,15 @@ const traduction = {
                     "x-api-key": localStorage.getItem('token')
                 };
                 const item = {
-                    language: values.language,
-                    target: "webapp",
-                    translation: {
-                        key: values.key,
-                        value: values.value,
+                        language: values.language,
+                        target: "webapp",
+                        translation: {
+                            key: values.key,
+                            value: values.value,
 
-                    },
-                }
-                console.log(values);
+                        },
+                    }
+                    //console.log(values);
                 axios({
                         url: ApiUrl + 'api/v2/admin/localization',
 
@@ -201,7 +210,7 @@ const traduction = {
                 const headers = {
                     "x-api-key": localStorage.getItem('token')
                 };
-                console.log(values);
+                // console.log(values);
                 const item = {
                     code: values.code,
                     name: values.name,
@@ -230,11 +239,40 @@ const traduction = {
                 };
 
                 const item = {
-                    name: values.name,
-                    note: values.note,
-                    context: values.context,
-                }
-                console.log(values);
+                        name: values.name,
+                        note: values.note,
+                        context: values.context,
+                    }
+                    //console.log(values);
+                axios({
+                        url: ApiUrl + 'api/v2/admin/localization/keys/' + values.id,
+
+                        data: item,
+                        headers,
+                        method: 'PATCH'
+                    })
+                    .then(resolve)
+
+                .catch(err => {
+                    commit('post_error')
+                    reject(err)
+                })
+            })
+        },
+        UpdateTooltip({
+            commit
+        }, values) {
+            return new Promise((resolve, reject) => {
+                const headers = {
+                    "x-api-key": localStorage.getItem('token')
+                };
+
+                const item = {
+                        name: values.name,
+                        context: values.context,
+                        tooltipLocation: values.tooltipType,
+                    }
+                    //console.log(values);
                 axios({
                         url: ApiUrl + 'api/v2/admin/localization/keys/' + values.id,
 

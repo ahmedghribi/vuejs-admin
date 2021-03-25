@@ -57,6 +57,7 @@
             type="textarea"
           />
         </a-form-item>
+
         <a-form-item v-if="record.translation !== null">
           <label for="" class="ant-form-item-required">
             <lang-flag iso="en" /> Anglais (Target value)
@@ -72,44 +73,98 @@
             id="valueInput"
           />
         </a-form-item>
-        <label for="" class="ant-form-item-required">Options </label> <br />
-        <a-radio-group
-          v-model="value"
-          style="padding-top:10px;padding-bottom:10px"
-        >
-          <a-radio :value="2">
-            None
-          </a-radio>
-          <a-radio :value="0">
-            Information
-          </a-radio>
-          <a-radio :value="1">
-            Question
-          </a-radio>
-        </a-radio-group>
-        <a-form-item v-if="value == 1">
-           <a-input
-            v-decorator="[
-              'tooltip'
-            ]"
-            type="textarea"
-            placeholder="Input your message"
-          />
-        </a-form-item>
-        <a-form-item v-if="value == 0">
-           <a-input
-            v-decorator="[
-              'tooltip'
-            ]"
-            type="textarea"
-            placeholder="Input your message"
-          />
+        <a-form-item>
+          <label for="" class="ant-form-item-required">Tooltip options</label>
+          <br />
+          <a-radio-group v-model="value" style="padding-bottom: 10px">
+            <a-radio value="text"> Tooltip </a-radio>
+            <a-radio value="exclamation"> Exclamation </a-radio>
+            <a-radio value="question"> Question </a-radio>
+          </a-radio-group>
+          <a-form-item v-if="value == 'text'">
+            <a-input
+              v-if="
+                record.translation == null ||
+                record.translation.tooltip == null ||
+                record.tooltipLocation != 'text'
+              "
+              v-decorator="['tooltip']"
+              type="textarea"
+              placeholder="Input your tooltip"
+            />
+            <a-input
+              v-if="
+                record.translation != null &&
+                record.translation.tooltip &&
+                record.tooltipLocation == 'text'
+              "
+              v-decorator="[
+                'tooltipEdit',
+                {
+                  initialValue: record.translation.tooltip,
+                },
+              ]"
+              type="textarea"
+              id="valueInput"
+            />
+          </a-form-item>
+          <a-form-item v-if="value == 'exclamation'">
+            <a-input
+              v-if="
+                record.translation == null ||
+                record.translation.tooltip == null ||
+                record.tooltipLocation != 'exclamation'
+              "
+              v-decorator="['tooltip']"
+              type="textarea"
+              placeholder="Input your exclamation"
+            />
+            <a-input
+              v-if="
+                record.translation != null &&
+                record.translation.tooltip &&
+                record.tooltipLocation == 'exclamation'
+              "
+              v-decorator="[
+                'tooltipEdit',
+                {
+                  initialValue: record.translation.tooltip,
+                },
+              ]"
+              type="textarea"
+            />
+          </a-form-item>
+          <a-form-item v-if="value == 'question'">
+            <a-input
+              v-if="
+                record.translation == null ||
+                record.translation.tooltip == null ||
+                record.tooltipLocation != 'question'
+              "
+              v-decorator="['tooltip']"
+              type="textarea"
+              placeholder="Input your question"
+            />
+            <a-input
+              v-if="
+                record.translation != null &&
+                record.translation.tooltip &&
+                record.tooltipLocation == 'question'
+              "
+              v-decorator="[
+                'tooltipEdit',
+                {
+                  initialValue: record.translation.tooltip,
+                },
+              ]"
+              type="textarea"
+              id="valueInput"
+            />
+          </a-form-item>
         </a-form-item>
         <div class="ant-modal-footer">
           <div>
-            <a-button type="default" @click="closeModal()">
-              Cancel
-            </a-button>
+            <a-button type="default" @click="closeModal()"> Cancel </a-button>
             <a-button type="primary" html-type="submit" :loading="iconLoading">
               Save
             </a-button>
@@ -129,35 +184,29 @@ export default {
 
   data() {
     return {
-      value: 2,
+      record: {
+        translation: {},
+      },
+      value: "",
+      tooltipvalue: {},
       modal2Visible: false,
       iconLoading: false,
       formLayout: "horizontal",
       form: this.$form.createForm(this, { name: "coordinated" }),
-      record: {
-        translation: {},
-      },
     };
   },
   methods: {
-    
     openModal(record) {
       (this.record = record), (this.modal2Visible = true);
+      this.value = this.record.tooltipLocation;
     },
     closeModal() {
       this.modal2Visible = false;
-       this.$store.dispatch("tradlist", this.$route.params.key);
-
-      //document.getElementById('valueInput').value=" ";
+      this.$store.dispatch("tradlist", this.$route.params.key);
     },
-    StopLoader(){
-      setTimeout(
-        ()=> this.iconLoading = false, 1000
-      );
-        setTimeout(
-        ()=> this.closeModal(), 1000
-      );
-
+    StopLoader() {
+      setTimeout(() => (this.iconLoading = false), 1000);
+      setTimeout(() => this.closeModal(), 1000);
     },
     handleSubmit(e) {
       e.preventDefault();
@@ -166,12 +215,28 @@ export default {
           this.iconLoading = true;
           this.addTranslation(values);
           //console.log("Received values of form: ", values);
+
+          this.tooltipvalue = {
+            id: values.keyId,
+            name: this.record.name,
+            context: this.record.context,
+            tooltipType: this.value,
+          };
+
+          this.UpdateTooltip(this.tooltipvalue);
+          //console.log(this.tooltipvalue);
         }
       });
     },
-    addTranslation: function(values) {
+    addTranslation: function (values) {
       this.$store
         .dispatch("addTranslation", values)
+        .then()
+        .catch((err) => console.log(err));
+    },
+    UpdateTooltip: function (values) {
+      this.$store
+        .dispatch("UpdateTooltip", values)
         .then(this.StopLoader())
         .catch((err) => console.log(err));
     },

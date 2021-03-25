@@ -143,9 +143,7 @@
                             <a>
                               <div class="d-flex">
                                 <div class="m-l-15">
-                                  <p class="m-b-0 text-dark">
-                                    aaa
-                                  </p>
+                                  <p class="m-b-0 text-dark">aaa</p>
                                   <p class="m-b-0">
                                     <small>56+6 ago</small>
                                   </p>
@@ -174,23 +172,17 @@
               @click="(e) => e.preventDefault()"
             >
               <span class="ant-pro-account-avatar">
-                <a-avatar
-                  :src="deepFind(userProfile, 'avatar.url')"
-                  class="antd-pro-global-header-index-avatar"
-                />
+                <a-avatar size="large" icon="user" />
               </span>
             </a>
             <a-menu slot="overlay">
               <a-menu-item key="0">
                 <li class="ph-1 pb-1 mb-1 border-bottom">
                   <div class="d-flex mr-2">
-                    <a-avatar
-                      :src="deepFind(userProfile, 'avatar.url')"
-                      class="antd-pro-global-header-index-avatar"
-                    />
+                    <a-avatar size="large" icon="user" />
                     <div class="ml-5">
                       <p class="mb-0 text-dark font-weight-semibold">
-                        {{ userProfile.name }}
+                        Anice Lajnef
                       </p>
                     </div>
                   </div>
@@ -199,8 +191,6 @@
               <a-menu-item key="1">
                 <a @click="logout">Logout</a>
               </a-menu-item>
-              <a-menu-divider />
-              <a-menu-item key="3"> {{ userProfile.username }} </a-menu-item>
             </a-menu>
           </a-dropdown>
         </li>
@@ -224,7 +214,7 @@ export default {
     ...mapGetters(["userProfile"]),
   },
   methods: {
-    logout: function() {
+    logout: function () {
       this.$store.dispatch("logout").then(() => {
         this.$router.push("/login");
       });
@@ -239,7 +229,7 @@ export default {
         this.loadding = false;
       }, 1000);
     },
-    deepFind: function(obj, path) {
+    deepFind: function (obj, path) {
       if (obj) {
         var paths = path.split("."),
           current = obj,

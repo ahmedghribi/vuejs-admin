@@ -2,11 +2,11 @@
   <div>
     <div
       class="page-header"
-      style="margin-bottom: 0;"
+      style="margin-bottom: 0"
       v-if="this.$route.meta.header.filter === 1"
     >
       <div class="row align-items-md-center">
-        <div class="col-md-4 col-xl-5 ">
+        <div class="col-md-4 col-xl-5">
           <div class="page-title media">
             <a-icon class="top-icon" :type="this.$route.meta.header.logo" />
             <div v-for="item in LangList.data" :key="item.name">
@@ -69,7 +69,7 @@
                     <a-icon
                       slot="prefix"
                       type="search"
-                      style="color:rgba(0,0,0,.25)"
+                      style="color: rgba(0, 0, 0, 0.25)"
                     />
                   </a-input>
                 </a-form-item>
@@ -88,6 +88,13 @@
           </div>
         </div>
       </div>
+      <a-alert
+        v-if="ErrorLn != 0"
+        type="warning"
+        show-icon
+        :message="'You have ' + ErrorLn + ' empty keys'"
+        closable
+      />
     </div>
 
     <a-table
@@ -111,14 +118,15 @@
           <a-icon type="retweet" /> Translate
           <a-menu slot="overlay">
             <a-menu-item key="1" @click="openModalEdit(record)"
-              ><a-icon type="edit" style="font-size:14px !important" />
+              ><a-icon type="edit" style="font-size: 14px !important" />
               Edit key
             </a-menu-item>
 
             <a-menu-divider />
 
-            <a-menu-item key="3" style="color:red" @click="DelKey(record)"
-              ><a-icon type="delete" style="font-size:14px !important" /> Delete
+            <a-menu-item key="3" style="color: red" @click="DelKey(record)"
+              ><a-icon type="delete" style="font-size: 14px !important" />
+              Delete
             </a-menu-item>
           </a-menu>
         </a-dropdown-button>
@@ -166,7 +174,7 @@ const columns = [
     dataIndex: "translation.value",
     scopedSlots: { customRender: "value" },
     width: "20%",
-    sorter: (a, b) => a.value.length - b.value.length,
+    sorter: (a, b) => a.translation.value.length - b.translation.value.length,
   },
 
   {
@@ -188,8 +196,8 @@ export default {
       langID: this.$route.params.key,
       modal2Visible: false,
       paginationOpt: {
-        defaultCurrent: 1, // Default current page number
-        defaultPageSize: 10, // The size of the default data displayed on the current page
+        defaultCurrent: 1, 
+        defaultPageSize: 10, 
       },
     };
   },
@@ -213,7 +221,18 @@ export default {
     LangList() {
       return this.$store.getters.LangList;
     },
-   
+    ErrorLn() {
+      let TradList = this.$store.getters.TradList?.data;
+      let counter = 0;
+      if (TradList) {
+        TradList.forEach((element) => {
+          if (element.translation == null) {
+            counter += 1;
+          }
+        });
+      }
+      return counter;
+    },
   },
   methods: {
     DelKey(record) {
@@ -234,7 +253,7 @@ export default {
         },
       });
     },
-    DeleteKey: function(id) {
+    DeleteKey: function (id) {
       this.$store
         .dispatch("DeleteKey", id)
         .then(console.log("ok"))

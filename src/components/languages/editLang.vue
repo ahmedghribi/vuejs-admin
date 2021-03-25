@@ -7,7 +7,7 @@
   >
     <div id="components-form-demo-vuex">
       <a-form :form="form" @submit="handleSubmit">
-        <a-form-item >
+        <a-form-item>
           <a-input
             v-decorator="[
               'id',
@@ -18,7 +18,7 @@
             type="hidden"
           />
         </a-form-item>
-        <a-form-item label="Language code" :colon='false'>
+        <a-form-item label="Language code" :colon="false">
           <a-input
             v-decorator="[
               'code',
@@ -28,7 +28,7 @@
             ]"
           />
         </a-form-item>
-        <a-form-item label="Language Name" :colon='false'>
+        <a-form-item label="Language Name" :colon="false">
           <a-input
             v-decorator="[
               'name',
@@ -41,12 +41,8 @@
 
         <div class="ant-modal-footer">
           <div>
-            <a-button type="default" @click="closeModal()">
-              Cancel
-            </a-button>
-            <a-button type="primary" html-type="submit">
-              Edit
-            </a-button>
+            <a-button type="default" @click="closeModal()"> Cancel </a-button>
+            <a-button type="primary" html-type="submit"> Edit </a-button>
           </div>
         </div>
       </a-form>
@@ -84,7 +80,7 @@ export default {
         }
       });
     },
-    updateLanguage: function(values) {
+    updateLanguage: function (values) {
       console.log(values);
       this.$store
         .dispatch("updateLanguage", values)

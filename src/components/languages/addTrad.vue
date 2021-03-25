@@ -23,6 +23,17 @@
             ]"
           />
         </a-form-item>
+        <a-form-item>
+          <a-input
+            v-decorator="[
+              'tooltipLocation',
+              {
+                initialValue: 'text',
+              },
+            ]"
+            type="hidden"
+          />
+        </a-form-item>
         <a-form-model-item label="Note" :colon="false">
           <a-input
             v-decorator="[
@@ -36,9 +47,7 @@
         </a-form-model-item>
         <div class="ant-modal-footer">
           <div>
-            <a-button type="default" @click="closeModal()">
-              Cancel
-            </a-button>
+            <a-button type="default" @click="closeModal()"> Cancel </a-button>
             <a-button type="primary" html-type="submit" :loading="iconLoading">
               Add
             </a-button>
@@ -83,7 +92,7 @@ export default {
         }
       });
     },
-    addKey: function(values) {
+    addKey: function (values) {
       //console.log(values);
       this.$store
         .dispatch("addKey", values)

@@ -34,9 +34,7 @@
 
         <div class="ant-modal-footer">
           <div>
-            <a-button type="default" @click="closeModal()">
-              Cancel
-            </a-button>
+            <a-button type="default" @click="closeModal()"> Cancel </a-button>
             <a-button type="primary" html-type="submit" :loading="iconLoading">
               Add
             </a-button>
@@ -65,14 +63,13 @@ export default {
     },
     closeModal() {
       this.modal2Visible = false;
-     this.$store.dispatch("languageList");
+      this.$store.dispatch("languageList");
     },
     StopLoader() {
       setTimeout(() => (this.iconLoading = false), 1000);
       setTimeout(() => this.closeModal(), 1000);
     },
     handleSubmit(e) {
-      
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
@@ -82,7 +79,7 @@ export default {
         }
       });
     },
-    addlanguage: function(values) {
+    addlanguage: function (values) {
       //console.log(values);
       this.$store
         .dispatch("addlanguage", values)

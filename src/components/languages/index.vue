@@ -12,12 +12,12 @@
         <a-tag
           :color="
             (record.isActive == true && 'green') ||
-              (record.isActive == false && 'red')
+            (record.isActive == false && 'red')
           "
         >
           {{
             (record.isActive == true && "Enabled") ||
-              (record.isActive == false && "Disabled")
+            (record.isActive == false && "Disabled")
           }}
         </a-tag>
       </span>
@@ -31,12 +31,13 @@
 
           <a-menu slot="overlay">
             <a-menu-item key="1" @click="openModal(record)"
-              ><a-icon type="edit" style="font-size:14px !important" /> Edit
+              ><a-icon type="edit" style="font-size: 14px !important" /> Edit
             </a-menu-item>
             <a-menu-divider />
 
-            <a-menu-item key="2" style="color:red" @click="DelLang(record)"
-              ><a-icon type="delete" style="font-size:14px !important" /> Delete
+            <a-menu-item key="2" style="color: red" @click="DelLang(record)"
+              ><a-icon type="delete" style="font-size: 14px !important" />
+              Delete
             </a-menu-item>
           </a-menu>
         </a-dropdown-button>
@@ -79,7 +80,7 @@ const columns = [
     dataIndex: "created",
     scopedSlots: { customRender: "created" },
     width: "20%",
-    sorter: function(a, b) {
+    sorter: function (a, b) {
       var c = new Date(a.created);
       var d = new Date(b.created);
       return c - d;
@@ -144,7 +145,7 @@ export default {
     DelLang(record) {
       this.$confirm({
         title: "Delete Language",
-          content: (
+        content: (
           <div>
             Are you sure delete
             <span style="color :red"> {record.name}</span>
@@ -158,7 +159,7 @@ export default {
         },
       });
     },
-    DeleteLanguage: function(id) {
+    DeleteLanguage: function (id) {
       this.$store
         .dispatch("DeleteLanguage", id)
         .then(console.log("ok"))

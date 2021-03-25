@@ -1,13 +1,9 @@
 <template>
   <datatable :columns="columns" :data="data">
     <template #columns>
-      <a slot="operation">
-      AAAAAA
-    </a>
+      <a slot="operation"> AAAAAA </a>
     </template>
-    
-    
-     </datatable>
+  </datatable>
 </template>
 <script>
 import datatable from "../pages/datatable.vue";
@@ -82,13 +78,12 @@ export default {
         },
       ],
       columns: [
-      
         {
           title: "Laguages",
           dataIndex: "Laguages",
           key: "Laguages",
           scopedSlots: { customRender: "Laguages" },
-          width: '30%',
+          width: "30%",
         },
         {
           title: "Code",
@@ -97,7 +92,7 @@ export default {
           scopedSlots: {
             customRender: "Code",
           },
-           width: '20%',
+          width: "20%",
         },
         {
           title: "Status",
@@ -106,15 +101,14 @@ export default {
           scopedSlots: {
             customRender: "Status",
           },
-           width: '25%',
+          width: "25%",
         },
         {
           title: "Action",
           key: "operation",
           scopedSlots: { customRender: "operation" },
-           width: '25%',
+          width: "25%",
         },
-        
       ],
     };
   },

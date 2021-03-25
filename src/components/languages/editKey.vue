@@ -47,9 +47,7 @@
         </a-form-model-item>
         <div class="ant-modal-footer">
           <div>
-            <a-button type="default" @click="closeModal()">
-              Cancel
-            </a-button>
+            <a-button type="default" @click="closeModal()"> Cancel </a-button>
             <a-button type="primary" html-type="submit" :loading="iconLoading">
               Edit
             </a-button>
@@ -95,7 +93,7 @@ export default {
         }
       });
     },
-    UpdateKey: function(values) {
+    UpdateKey: function (values) {
       //console.log(values);
       this.$store
         .dispatch("UpdateKey", values)
